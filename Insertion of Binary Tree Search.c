@@ -29,6 +29,7 @@ BinTree Insert(int X, BinTree BST)
 		else {
 			BST->Data = X;
 			BST->left = BST->right = NULL;
+			printf("qq.com");
 		}
 	}
 	else {
