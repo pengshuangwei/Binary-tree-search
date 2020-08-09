@@ -100,9 +100,7 @@ BinTree CreateTree()
 }
 BinTree Deleted(int X, BinTree BST)
 {
-	BinTree Left, Right;
 	BinTree Tmp = NULL;
-	Left = Right = NULL;
 	if (!BST) {
 		printf("含有X元素的结点未找到");
 	}
