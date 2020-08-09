@@ -12,6 +12,9 @@ Postition CreateTree();
 BinTree Insert(int X, BinTree BST);
 /*二叉搜索树的插入操作*/
 BinTree Deleted(int X, BinTree BSt);
+Postition FindMax(BinTree BST);//查找最大值
+Postition FindMin(BinTree BST);//查找最小值
+Postition Find(int X, BinTree BST);//查找特定值
 int main()
 {
 	int X = 0;
