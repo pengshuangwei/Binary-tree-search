@@ -11,6 +11,7 @@ Postition CreateTree();
 /*创建二叉搜索树*/
 BinTree Insert(int X, BinTree BST);
 /*二叉搜索树的插入操作*/
+BinTree Deleted(int X, BinTree BSt);
 int main()
 {
 	int X = 0;
@@ -45,7 +46,8 @@ BinTree Insert(int X, BinTree BST)
 			BST->right = Insert(X, BST->right);
 	}
 	return BST;
-}Postition CreateTree()
+}
+BinTree CreateTree()
 {
 	BinTree BST = NULL;
 	BinTree Root = NULL;
@@ -95,4 +97,68 @@ BinTree Insert(int X, BinTree BST)
 		}
 	}
 	return Root;/*返回根结点的地址*/
+}
+BinTree Deleted(int X, BinTree BST)
+{
+	BinTree Left, Right;
+	BinTree Tmp = NULL;
+	Left = Right = NULL;
+	if (!BST) {
+		printf("含有X元素的结点未找到");
+	}
+	else if (X > BST->Data) {
+		BST->right = Deleted(X, BST->right);
+	}
+	else if (X < BST->Data) {
+		BST->left = Deleted(X, BST->left);
+	}
+	else {
+		//X元素找到了
+		if (BST->left && BST->right) {
+			Tmp = FindMin(BST->right);
+			BST->Data = Tmp->Data;
+			BST->right = Deleted(BST->Data, BST->right);
+		/*if (BST->left && BST->right) {
+			Tmp = FindMax(BST->left);
+			BST->Data = Tmp->Data;
+			BST->left = Deleted(BST->Data, BST->left);*/
+		}
+		else {
+			Tmp = BST;
+			if (!BST->left) {
+				BST = BST->right;
+			}
+			else if (!BST->right) {
+				BST = BST->left;
+			}
+			free(Tmp);
+		}
+	}
+
+	return BST;
+}
+Postition FindMax(BinTree BST) 
+{
+	if (BST) {
+		while (BST->right) BST = BST->right;
+	}
+	return BST;
+}
+Postition FindMin(BinTree BST)
+{
+	if (BST) {
+		while (BST->left) BST = BST->left;
+	}
+	return BST;
+}
+Postition Find(int X, BinTree BST) {
+	while (BST) {
+		if (X > BST->Data)
+			BST = BST->right;
+		else if (X < BST->Data)
+			BST = BST->left;
+		else
+			break;
+	}
+	return BST;
 }
